@@ -1,39 +1,25 @@
 /**
  * 
  */
-class Person {
- /**
- * @param {String} name - Navnet til personen
- * @param {Date} borndate - Fødselsdato til personen
- */
- constructor(name = null, borndate = null) {
- this.name = name;
- this.borndate = bordate;
- }
- /**
- * Get age of person
- * @public
- */
- age() {
- const now = new Date ();
- return now.getFullYear() - this.borndate.getFullYear();
- }
-}
 
 class Dice {
-	// Public felt
-	value = null;
+	
+	 constructor(){
+        this.roll = this.roll.bind(this);
+
+    }
 	
 	roll(){
 		this.value = Math.floor(Math.random() * 6) + 1;
+		return value;
 	}
+	
 	
 	
 }
 
 class DiceController{
-	// Public felt
-	btRef.addEventListener("click",this.rollDice,true);
+	
 	
 	constructor(){
 		this.run = this.run.bind(this);
@@ -42,10 +28,18 @@ class DiceController{
 	
 	
 	rollDice(){
-		btRef=document.getElementById(this.root).querySelector("*[data-dicebutton]");
-		dice.roll();
-		this.diceoutput.innerText = dice.value;
+		
+		this.diceoutput.innerText = dice.roll();
 		
 	}
 	
+	run(){
+		btRef=document.getElementById(this.root).querySelector("*[data-dicebutton]");
+		btRef.addEventListener("click",this.rollDice,true);
+	}
+	
 }
+ let controller = new DiceController("root"); 
+ document.addEventListener("DOMContentLoaded",controller.run,true); 
+
+ console.log(controller.rollDice()); 
