@@ -4,42 +4,39 @@
 
 class Dice {
 	
-	 constructor(){
-        this.roll = this.roll.bind(this);
-
+	 constructor(value = null){
+        this.value = value;
     }
 	
 	roll(){
 		this.value = Math.floor(Math.random() * 6) + 1;
-		return value;
-	}
-	
-	
-	
+		return this.value;
+	}	
 }
 
 class DiceController{
 	
-	
-	constructor(){
+	constructor(root = null){
+		this.root = root;
 		this.run = this.run.bind(this);
 		this.rollDice = this.rollDice.bind(this);
+		this.outRef = null;
 	}
 	
-	
 	rollDice(){
-		
-		this.diceoutput.innerText = dice.roll();
-		
+		const dice = new Dice();
+		this.outRef = document.getElementById(this.root).querySelector("*[data-diceoutput]");
+		var value = dice.roll();
+		this.outRef.innerHTML = value;
 	}
 	
 	run(){
-		btRef=document.getElementById(this.root).querySelector("*[data-dicebutton]");
+		
+		const btRef = document.getElementById(this.root).querySelector("*[data-dicebutton]");
 		btRef.addEventListener("click",this.rollDice,true);
+		
 	}
-	
 }
  let controller = new DiceController("root"); 
  document.addEventListener("DOMContentLoaded",controller.run,true); 
-
  console.log(controller.rollDice()); 
